@@ -1,73 +1,179 @@
 <!DOCTYPE html>
 <html lang="ru">
-<head> <link rel = stylesheet href = "Castomer.css" >
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Википедия с Bootstrap</title>
     <!-- Подключение CSS Bootstrap через CDN -->
-    <link
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Подключение кастомного CSS -->
+    <link rel="stylesheet" href="Castomer.css">
+    <!-- Подключение Google Fonts для выразительной типографики -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Сложные фильтры для изображений */
+        .img-filter {
+            filter: blur(2px) brightness(1.2) grayscale(20%);
+            transition: filter 0.5s ease;
+        }
+
+        .img-filter:hover {
+            filter: none;
+        }
+
+        .jumbotron {
+            height: 100vh;
+            background: url('background.jpg') no-repeat center center/cover;
+            color: white;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-3d {
+            width: 100px;
+            height: 100px;
+            background: url('logo-3d.png') no-repeat center center/contain;
+            animation: rotate 5s infinite linear;
+        }
+
+        @keyframes rotate {
+            from { transform: rotateY(0); }
+            to { transform: rotateY(360deg); }
+        }
+
+        .scroll-animation {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .scroll-animation.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1, h2 {
+            font-family: 'Roboto Slab', serif;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        body {
+            cursor: url('custom-cursor.png'), auto;
+        }
+
+        .handmade {
+            background: url('handmade-texture.png') repeat;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .geometric-bg {
+            background: linear-gradient(135deg, #ff6f61, #ffcc5c);
+            clip-path: polygon(0 0, 100% 0, 100% 80%, 50% 100%, 0 100%);
+        }
+
+        .btn-interactive {
+            transition: transform 0.3s ease;
+        }
+
+        .btn-interactive:hover {
+            transform: scale(1.1);
+        }
+
+        .newspaper-layout {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .newspaper-layout > div {
+            flex: 1 1 30%;
+            padding: 20px;
+            border: 1px solid #ddd;
+            background: #f9f9f9;
+        }
+    </style>
 </head>
-<body >
-    
+<body>
+    <!-- Навигация -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
-        <a class="navbar-brand" href="#">Википедия Warhammer 40'000</a>
-        
+        <a class="navbar-brand" href="#">
+            Википедия Warhammer 40'000
+        </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Главная <span class="sr-only">(current)</span></a>
+                    <a class="index.html" href="#">Главная <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Может быть интересно</a>
+                    <a  href="#">Может быть интересно</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Сообщество</a>
+                    <a ref="#">Сообщество</a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <!-- Основной контент -->
-    <div class="container">
-        <div class="jumbotron">
-            <h1 class="display-4">Добро пожаловать на Википедию Warhammer 40k!</h1>
-            <hr class="my-4">
-            <p>Википедия по Warhammer 40'000 — это проект для создания многоязычной интернет-энциклопедии, работающий на принципах вики.</p>
-            <a class="btn btn-primary btn-lg" href="#" role="button">ИЗУЧИТЬ</a>
-        </div>
+    <div class="jumbotron geometric-bg">
+        <h1 class="display-4">Добро пожаловать на Википедию Warhammer 40k!</h1>
+        <hr class="my-4">
+        <p>Википедия по Warhammer 40'000 — это проект для создания многоязычной интернет-энциклопедии, работающий на принципах вики.</p>
+        <a class="btn btn-primary btn-lg btn-interactive" href="#" role="button">ИЗУЧИТЬ</a>
+    </div>
 
-        <div class="row">
-            <div class="col-md-4">
-                <h2>История</h2>
-                <p>Википедия была запущена 12 февраля 2025 года.</p>
-            </div>
-            <div class="col-md-4">
-                <h2>Миссия</h2>
-                <p>Рассказать мир, в котором каждый человек может свободно познать вселенную Warhammer 40'000.</p>
-            </div>
-            <div class="col-md-4">
-                <h2>Комьюнити</h2>
-                <p>История Warhammer 40'000 развивается и с каждым новым выпущенным продуктом и становиться масштабнее.</p>
-            </div>
+    <div class="container newspaper-layout">
+        <div class="handmade">
+            <h2>История</h2>
+            <p>Википедия была запущена 12 февраля 2025 года.</p>
+        </div>
+        <div class="handmade">
+            <h2>Миссия</h2>
+            <p>Рассказать мир, в котором каждый человек может свободно познать вселенную Warhammer 40'000.</p>
+        </div>
+        <div class="handmade">
+            <h2>Комьюнити</h2>
+            <p>История Warhammer 40'000 развивается и с каждым новым выпущенным продуктом и становиться масштабнее.</p>
         </div>
     </div>
 
-    <!-- Футер -->
-    <footer class="footer">
-        <div class="container">
+
+    
+        <div class="container text-center py-4">
             <span>2025 Википедия. Все права защищены.</span>
         </div>
-    </footer>
+   
 
-    <!-- Подключение JavaScript Bootstrap (необходимо для некоторых компонентов) -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+
+        const sections = document.querySelectorAll('.scroll-animation');
+        const options = {
+            root: null,
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, options);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
 </body>
 </html>
